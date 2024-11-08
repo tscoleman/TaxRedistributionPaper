@@ -18,13 +18,10 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
 
-file_pathPSZ = "C:\\Users\\decla\\Downloads\\PSZ2022AppendixTablesII(Distrib).xlsx"
-file_pathAS = "C:\\Users\\decla\\Downloads\\AutenSplinter-Calculations67a.xlsx"
-file_path3 = "C:\\Users\\decla\\Downloads\\AutenSplinter-IncomeIneq.xlsx"
-dir = "/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/"
-file_pathPSZ = dir + "PSZ2022AppendixTablesII(Distrib).xlsx"
-file_pathAS = dir + "AutenSplinter-IncomeIneq_2024.xlsx"
-file_path3 = "C:\\Users\\decla\\Downloads\\AutenSplinter-IncomeIneq.xlsx"
+dir_name = "/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/"
+dir_name = ''
+file_pathPSZ = dir_name + "PSZ2022AppendixTablesII(Distrib).xlsx"
+file_pathAS = dir_name + "AutenSplinter-IncomeIneq_2024.xlsx"
 
 #%% Populate PSZ dataframes 
 

@@ -14,10 +14,13 @@ from cycler import cycler
 
 # Change the following file_paths by commenting out the ones that are not required
 # but please leave them in so they don't need to be re-entered
+
 file_path = "C:\\Users\\decla\\Downloads\\"
 cbofile_path = "C:\\Users\\decla\\Downloads\\"
 file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
 cbofile_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/CBO2019-additional-data-for-researchers/CBO_distribution_household_income_2019_data/'
+file_path = ''
+cbofile_path = ''
 
 # Cycler and spines to get formatting for graphs consistent
 plt.rcParams['font.size'] = '12'
@@ -107,7 +110,7 @@ ymin_psz, ymax_psz = -55, 55
 
 # First Figure: AS data and PSZ data (with AS income groups)
 fig1, axs1 = plt.subplots(1, 2, figsize=(12, 6))
-fig1.suptitle('Figure 3b: Before less After-Tax Income, PSZ (Factor Income) v. AS, Not Consistent Rankings')
+fig1.suptitle('Figure A2: Before less After-Tax Income, PSZ (Factor Income) v. AS, Not Consistent Rankings')
 # AS data (left subplot)
 for percname in aspercnames:
     axs1[0].plot(as_merged['year'], as_merged[percname], label=percname)
@@ -159,7 +162,7 @@ axs1[1].spines[['left']].set_visible(False)
 plt.tight_layout()
 # totally silly, but need 'bbox_inches='tight'' to force legend to be put into figure
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
-#plt.savefig('figures/figure3b_output.pdf',bbox_inches="tight") 
+plt.savefig('figures/figureA2_output.pdf',bbox_inches="tight") 
 plt.show()
 plt.close()
 
@@ -168,7 +171,7 @@ plt.close()
 
 # First Figure: AS data and PSZ data (with AS income groups)
 fig2, axs2 = plt.subplots(1, 2, figsize=(12, 6))
-fig2.suptitle('Figure 3c: Before less After-Tax Income, PSZ (Before Tax Hybrid Income) v. AS, Not Consistent Rankings')
+fig2.suptitle('Figure A1: Before less After-Tax Income, PSZ (Before Tax Hybrid Income) v. AS, Not Consistent Rankings')
 # AS data (left subplot)
 for percname in aspercnames:
     axs2[0].plot(as_merged['year'], as_merged[percname], label=percname)
@@ -220,7 +223,7 @@ axs2[1].spines[['left']].set_visible(False)
 plt.tight_layout()
 # totally silly, but need 'bbox_inches='tight'' to force legend to be put into figure
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
-#plt.savefig('figures/figure3c_output.pdf',bbox_inches="tight") 
+plt.savefig('figures/figureA1_output.pdf',bbox_inches="tight") 
 plt.show()
 plt.close()
 

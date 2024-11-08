@@ -341,7 +341,7 @@ def plot_PSZcombined_panels(file_path, sheet_name, indexyr,all4=False):
     if sheet_name == 'TB4':
         fig.suptitle('Figure 7: Growth in real before and after-tax and transfer income (PSZ)',fontsize=20)
     elif sheet_name == 'TA4':
-        fig.suptitle('Figure 7b: Growth in real factor vs after-tax and transfer income (PSZ)',fontsize=20)
+        fig.suptitle('Figure A5: Growth in real factor vs after-tax and transfer income (PSZ)',fontsize=20)
     else:
         fig.suptitle('Figure 7c: Unknown (PSZ)',fontsize=20)
     plt.tight_layout()
@@ -378,7 +378,7 @@ plt.savefig('figures/figure7all4_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
 plot_PSZcombined_panels(file_path+file_name, 'TA4', 1966)
-plt.savefig('figures/figure7b_output.pdf',bbox_inches='tight')
+plt.savefig('figures/figureA5_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
 plot_PSZcombined_panels(file_path+file_name, 'TA4', 1966,all4=True)

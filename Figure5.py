@@ -341,24 +341,24 @@ rs_df = rs_df.sort_index()
 figscale = 0.7
 plt.figure(figsize=(figscale*10,figscale*6))  # Changing the figsize seems to be the best way to change fonts, etc
 plt.plot(rs_df[['RSIndex_AS','RSIndex_cbo_mkt','psz_gini_diff']])
-plt.title('Figure 5 alt: Auten & Splinter and CBO Reynolds−Smolensky Index')
+plt.title('Figure A3: Auten & Splinter and CBO Reynolds−Smolensky Index')
 #plt.title('Auten & Splinter and CBO Reynolds−Smolensky Index')
 
 plt.legend(['Auten&Splinter','CBO','PSZ (Gini diff, factor income)'],loc='upper center', bbox_to_anchor=(0.5, -.1),
           fancybox=True, shadow=True, ncol=3)#,fontsize=11)
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
-plt.savefig('figures/figure5alt_output.pdf',bbox_inches='tight')  # The 'bbbox_inches='tight'' makes sure the legend is withing the .pdf
+plt.savefig('figures/figureA3_output.pdf',bbox_inches='tight')  # The 'bbbox_inches='tight'' makes sure the legend is withing the .pdf
 plt.show()
 
 plt.figure(figsize=(figscale*10,figscale*6))
 plt.plot(rs_df[['RSIndex_AS','as_gini_diff','psz_gini_diff']])
-plt.title('Alternate Comparison of A&S and PSZ for Gini Differences')
+plt.title('Figure A4:Alternate Comparison of A&S and PSZ for Gini Differences')
 plt.legend(['A&S Reynolds-Smolensky','A&S (Gini diff)','PSZ (Gini diff, factor income)'],loc='upper center', bbox_to_anchor=(0.5, -0.1),
           fancybox=True, shadow=True, ncol=3)#,fontsize=11)
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
-plt.savefig('figures/figure5balt_output.pdf',bbox_inches='tight')
+plt.savefig('figures/figureA4_output.pdf',bbox_inches='tight')
 plt.show()
 
 

@@ -102,6 +102,7 @@ file_path = "C:\\Users\\decla\\Downloads\\"
 file_name = 'AutenSplinter-IncomeIneq_2024.xlsx'
 file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
 file_name = 'AutenSplinter-IncomeIneq_2024.xlsx'
+file_path = ''
 
 as_file_path = file_path+file_name
 

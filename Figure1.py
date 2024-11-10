@@ -31,7 +31,7 @@ from cycler import cycler
 sns.set(style="whitegrid")
 
 #file_path = "C:\\Users\\decla\\Downloads\\PSZ2022AppendixTablesII(Distrib).xlsx"
-#file_path = "/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/PSZ2022AppendixTablesII(Distrib).xlsx"
+file_path = "/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/PSZ2022AppendixTablesII(Distrib).xlsx"
 file_path = "PSZ2022AppendixTablesII(Distrib).xlsx"
 
 #%% Read in data and process
@@ -122,7 +122,7 @@ plt.plot(shares_df)
 plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f'{x:.0%}'))
 #plt.locator_params(axis='y', nbins=8)
 
-plt.title("Figure 1: Fiscal Income as a Fraction of Pre-Tax Hybrid Income (PSZ data)")
+plt.title("Figure 1: Fiscal Income as a Fraction of Pre-Tax Hybrid Income\nPSZ data, 1960-2019")
 plt.ylabel("Share (%)")
 #plt.xlabel("Years")
 #plt.legend(shares_df.columns.to_list(),frameon=False)#, loc='lower center')#,ncol=3)

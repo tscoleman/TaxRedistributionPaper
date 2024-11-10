@@ -164,6 +164,7 @@ def plot_AScombined_panels(file_path, sheet_name, ref_sheet, indexyr):
         axs[rowi,coli].set_xlabel(' ')
         axs[rowi,coli].set_ylim(0.5,3)
         axs[rowi,coli].grid(axis='y',alpha=0.25)  # Only horizontal gridlines
+        axs[rowi,coli].grid(axis='x',alpha=0.)  # Only horizontal gridlines
         
 #    axs[0,0].legend(['Before Tax','After Tax'],frameon=False)                   # Legend in the upper left
     fig.legend(['Before Tax','After Tax'],loc='upper center', bbox_to_anchor=(0.5, 0.02),
@@ -177,7 +178,7 @@ def plot_AScombined_panels(file_path, sheet_name, ref_sheet, indexyr):
 
 
 
-    fig.suptitle('Figure 6: Growth in real (2018) before- and after-tax-and-transfer income',fontsize=20)
+    fig.suptitle('Figure 6: Growth in real (2018) before- and after-tax-and-transfer income, 1960-2019',fontsize=20)
     plt.tight_layout()
 #    plt.show()  This command must come after 'plt.savefit()'
 
@@ -313,6 +314,7 @@ def plot_PSZcombined_panels(file_path, sheet_name, indexyr,all4=False):
             axs[rowi,coli].set_xlabel(' ')
             axs[rowi,coli].set_ylim(0.5,3)
             axs[rowi,coli].grid(axis='y',alpha=0.25)  # Only horizontal gridlines
+            axs[rowi,coli].grid(axis='y',alpha=0.)  # Only horizontal gridlines
             
         fig.legend(['Before Tax','After Tax'],loc='upper center', bbox_to_anchor=(0.5, 0.02),
           fancybox=True, shadow=True, ncol=4)#,fontsize=11)        axs[0,1].axes.yaxis.set_ticklabels([])           # Turn off left axis for the right-hand graphs
@@ -330,6 +332,7 @@ def plot_PSZcombined_panels(file_path, sheet_name, indexyr,all4=False):
             axs[i].set_xlabel(' ')
             axs[i].set_ylim(0.5,3)
             axs[i].grid(axis='y',alpha=0.25)  # Only horizontal gridlines
+            axs[i].grid(axis='x',alpha=0.)  # Only horizontal gridlines
             
         fig.legend(['Before Tax','After Tax'],loc='upper center', bbox_to_anchor=(0.5, 0.02),
           fancybox=True, shadow=True, ncol=4)#,fontsize=11)        axs[1].axes.yaxis.set_ticklabels([])           # Turn off left axis for the right-hand graphs
@@ -339,11 +342,11 @@ def plot_PSZcombined_panels(file_path, sheet_name, indexyr,all4=False):
 
 
     if sheet_name == 'TB4':
-        fig.suptitle('Figure 7: Growth in real before and after-tax and transfer income (PSZ)',fontsize=20)
+        fig.suptitle('Figure 7: Growth in real before and after-tax and transfer income, PSZ, 1962-2019',fontsize=20)
     elif sheet_name == 'TA4':
-        fig.suptitle('Figure A5: Growth in real factor vs after-tax and transfer income (PSZ)',fontsize=20)
+        fig.suptitle('Figure A5: Growth in real factor vs after-tax and transfer income, PSZ, 1962-2019',fontsize=20)
     else:
-        fig.suptitle('Figure 7c: Unknown (PSZ)',fontsize=20)
+        fig.suptitle('Figure 7c: Unknown, PSZ, 1962-2019',fontsize=20)
     plt.tight_layout()
 #    plt.show()  This command must come after 'plt.savefit()'
 

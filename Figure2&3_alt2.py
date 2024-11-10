@@ -110,7 +110,7 @@ ymin_psz, ymax_psz = -55, 55
 
 # First Figure: AS data and PSZ data (with AS income groups)
 fig1, axs1 = plt.subplots(1, 2, figsize=(12, 6))
-fig1.suptitle('Figure A2: Before less After-Tax Income, PSZ (Factor Income) v. AS, Not Consistent Rankings')
+fig1.suptitle('Figure A2: Before less After-Tax Income, Not Consistent Rankings\nPSZ (Factor Income, 1962-2019) v. AS (1960-2019)')
 # AS data (left subplot)
 for percname in aspercnames:
     axs1[0].plot(as_merged['year'], as_merged[percname], label=percname)
@@ -171,7 +171,7 @@ plt.close()
 
 # First Figure: AS data and PSZ data (with AS income groups)
 fig2, axs2 = plt.subplots(1, 2, figsize=(12, 6))
-fig2.suptitle('Figure A1: Before less After-Tax Income, PSZ (Before Tax Hybrid Income) v. AS, Not Consistent Rankings')
+fig2.suptitle('Figure A1: Before less After-Tax Income, Not Consistent Rankings\nPSZ (Before Tax Hybrid Income, 1962-2019) v. AS (1960-2019)')
 # AS data (left subplot)
 for percname in aspercnames:
     axs2[0].plot(as_merged['year'], as_merged[percname], label=percname)

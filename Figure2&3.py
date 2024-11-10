@@ -293,7 +293,7 @@ for i in range(len(xquintiles)):
 
 # First Figure: AS data and PSZ data (with AS income groups)
 fig1, axs1 = plt.subplots(1, 2, figsize=(12, 6))
-fig1.suptitle('Figure 3: Tax & transfer rates, PSZ v. AS')
+fig1.suptitle('Figure 3: Tax & transfer rates, PSZ (1962-2019) v. AS (1966-2019)')
 # AS data (left subplot)
 for percname in aspercnames:
     if 'redisrate'+percname in as_redis.columns:
@@ -437,7 +437,7 @@ else:
 # -----------------------------------------
 fig2, axs2 = plt.subplots(1, 2, figsize=(12, 6))
 
-fig2.suptitle('Figure 4: Tax & transfer rates: AS v. CBO')
+fig2.suptitle('Figure 4: Tax & transfer rates: AS (1966-2019) v. CBO (1979-2019)')
 
 # AS Quintiles (left subplot)
 for i, quintile_name in enumerate(xquintile_names):

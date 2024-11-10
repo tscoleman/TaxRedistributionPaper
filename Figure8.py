@@ -102,7 +102,7 @@ file_path = "C:\\Users\\decla\\Downloads\\"
 file_name = 'AutenSplinter-IncomeIneq_2024.xlsx'
 file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
 file_name = 'AutenSplinter-IncomeIneq_2024.xlsx'
-file_path = ''
+#file_path = ''
 
 as_file_path = file_path+file_name
 
@@ -249,7 +249,7 @@ ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05),
 '''
 
 # Set the overall title for the figure
-fig.suptitle("Figure 8: Share of transfers for each quintile and for bottom quintile")#, fontsize=14)
+fig.suptitle("Figure 8: Share of transfers for each quintile and for bottom quintile, 1960-2019")#, fontsize=14)
 #fig.suptitle("Share of transfers for each quintile and for bottom quintile")#, fontsize=14)
 
 # Adjust layout to avoid overlap

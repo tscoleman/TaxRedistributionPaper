@@ -190,7 +190,8 @@ for pctlb, pctla in zip(beftax_pctl,afttax_pctl):
 
 
 # Create subplots for both figures
-fig, axs = plt.subplots(1, 2, figsize=(14, 6))
+figscale = .8
+fig, axs = plt.subplots(1, 2, figsize=(14*figscale, 6*figscale))
 
 # Plot the first figure on the left
 for label, pctla in zip(pctl_names,afttax_pctl):
@@ -212,7 +213,7 @@ box = axs[0].get_position()
 
 # Put a legend below current axis
 axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.1),
-          fancybox=True, shadow=True, ncol=5,fontsize=13)
+          fancybox=False, shadow=False, ncol=5,fontsize=11)
 
 # Plot the second figure on the right
 axs[1].plot(data_pretax['year'],data_pretax['q1_ratio'], label='Transfers', linewidth=1.)
@@ -235,7 +236,7 @@ box = axs[1].get_position()
 
 # Put a legend below current axis
 axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.1),
-          fancybox=True, shadow=True, ncol=2,fontsize=13)
+          fancybox=False, shadow=False, ncol=2,fontsize=11)
 
 '''
 # Shrink current axis's height by 10% on the bottom
@@ -249,7 +250,7 @@ ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05),
 '''
 
 # Set the overall title for the figure
-fig.suptitle("Figure 8: Share of transfers for each quintile and for bottom quintile, 1960-2019")#, fontsize=14)
+fig.suptitle("Figure 8: Share of transfers for each quintile and for bottom quintile, 1960-2019",fontsize=16)#, fontsize=14)
 #fig.suptitle("Share of transfers for each quintile and for bottom quintile")#, fontsize=14)
 
 # Adjust layout to avoid overlap
@@ -258,7 +259,7 @@ plt.tight_layout()
 
 file_path = "C:\\Users\\decla\\Downloads\\"
 file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
-file_path = ''
+#file_path = ''
 
 # Save the figure as a PDF
 plt.savefig('figures/figure8_Transfers_and_Income_Shares.pdf')

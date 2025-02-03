@@ -32,15 +32,15 @@ sns.set(style="whitegrid")
 
 #file_path = "C:\\Users\\decla\\Downloads\\PSZ2022AppendixTablesII(Distrib).xlsx"
 file_path = "/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/PSZ2022AppendixTablesII(Distrib).xlsx"
-file_path = "PSZ2022AppendixTablesII(Distrib).xlsx"
+#file_path = "PSZ2022AppendixTablesII(Distrib).xlsx"
 
 #%% Read in data and process
 
 # The 'categories' list must match the sheet from the PSZ workbook
 # Put them in this order so that 
-cat_names =['bottom 50%','Middle 40%','Top 10%'] # ['Top 10%','Middle 40%','bottom 50%']# ['bottom 50%','Middle 40%','Top 10%']
-label_names = ['Bottom 50%','Middle 40%','Top 10%'] # This is really silly, but PSZ have lc 'bottom' in their spreadsheet so rename
-sheet_names = ['TD7','TD8','TD9'] # ['TD9','TD8','TD7']# ['TD7','TD8','TD9'] 
+cat_names =['All','bottom 50%','Top 10%'] # ['Top 10%','Middle 40%','bottom 50%']# ['bottom 50%','Middle 40%','Top 10%']
+label_names = ["All",'Bottom 50%','Top 10%'] # This is really silly, but PSZ have lc 'bottom' in their spreadsheet so rename
+sheet_names = ['TD5','TD7','TD9'] # ['TD9','TD8','TD7']# ['TD7','TD8','TD9'] 
 sheets = []
 for catname,sheetname in zip(cat_names,sheet_names):
     x1 = pd.read_excel(file_path, sheet_name=sheetname,header=7,index_col=0)
@@ -50,7 +50,7 @@ for catname,sheetname in zip(cat_names,sheet_names):
 TB3 = pd.read_excel(file_path, sheet_name="TB3",header=7,index_col=0)
 TD5 = pd.read_excel(file_path, sheet_name="TD5",header=7,index_col=0)
 
-income_df = pd.DataFrame(sheets[0].loc[:,'equal-split individuals'])
+income_df = pd.DataFrame(sheets[0].loc[:,'Individuals'])
 income_df.columns = [cat_names[0]]
 income_df[cat_names[1]] = sheets[1].loc[:,'equal-split individuals']
 income_df[cat_names[2]] = sheets[2].loc[:,'equal-split individuals']
@@ -64,7 +64,7 @@ income_df.index.name = "Year"
 income_df = income_df.merge(TB3,left_index=True,right_index=True,suffixes=('','_TB3'))
 
 for i, catname in enumerate(cat_names):
-    income_df[cat_names[i]+'_share'] = income_df[catname] / income_df[catname+'_TB3']
+    income_df[cat_names[i]+'_share'] = 100 * income_df[catname] / income_df[catname+'_TB3']
 
 '''
 shares_df = pd.DataFrame(TD9.loc[:,'equal-split individuals']/TB3.loc[:,'Top 10%'])
@@ -95,15 +95,19 @@ growth_df.loc['PSZ FI Tax Units'] = 100*(growth_df.loc[x1[1]]/growth_df.loc[x1[0
 print(growth_df)
 
 
-#%% 
+#%% Plotting
 
  
+plt.figure(figsize=(9,5.4),frameon=False,clear=True)
+
 #sns.lineplot(data=data_melted, x="Year", y="Percentage", hue="Type", linewidth=0.8)
-plt.rcParams['font.size'] = '30'
+plt.rcParams['font.size'] = '12'
 plt.rcParams['axes.spines.right'] = False
 plt.rcParams['axes.spines.top'] = False
 # These colors are orange, green, blue (put in this order so that "bottom 50%" comes out solid blue but the legend is first)
 plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=['solid','dashed','dashdot']) + cycler(color=[ '#1f77b4','#ff7f0e', '#2ca02c']))
+plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=["-",":","--","-.", (5, (10, 3)),(0, (3, 5, 1, 5, 1, 5))]) 
+                                   + cycler(color=[ '#000000','#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']))
 # This cycles over linestyles and colors:
 # Linestyles see https://matplotlib.org/stable/gallery/lines_bars_and_markers/linestyles.html
 # The linestyles here are "solid, dotted, dashed, dashdot, long dash with offset, dashdotdotted"
@@ -119,19 +123,19 @@ plt.grid(axis='y',alpha=.25)
 #plt.figure(figsize=(10, 6),frameon=False,clear=True)
 
 plt.plot(shares_df)
-plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f'{x:.0%}'))
+#plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f'{x:.0}'))
 #plt.locator_params(axis='y', nbins=8)
 
-plt.title("Figure 1: Fiscal Income as a Fraction of Pre-Tax Hybrid Income\nPSZ data, 1960-2019")
+plt.title("Figure 1: Fiscal Income as a Fraction of Pre-Tax Hybrid Income\nPSZ data, 1960-2019",fontsize=14)
 plt.ylabel("Share (%)")
 #plt.xlabel("Years")
 #plt.legend(shares_df.columns.to_list(),frameon=False)#, loc='lower center')#,ncol=3)
 plt.legend(shares_df.columns.to_list(),loc='upper center', bbox_to_anchor=(0.5, -0.1),
-          fancybox=True, shadow=True, ncol=3,fontsize=11)
+          fancybox=False, shadow=False, ncol=3,fontsize=11)
 
 plt.tight_layout()
 
-plt.savefig('figures/figure1_output.pdf')
+#plt.savefig('figures/figure1_output.pdf')
 plt.show()
 plt.close()
 

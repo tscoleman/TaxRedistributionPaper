@@ -32,6 +32,11 @@ plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=['solid','dashdot','dashed']
 #plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=["-",":","--","-.", (5, (10, 3)),(0, (3, 5, 1, 5, 1, 5))]) 
 #                                   + cycler(color=[ '#000000','#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']))
 #plt.rcParams['lines.linestyle'] = 'dashed'
+# These colors are orange, green, blue (put in this order so that "bottom 50%" comes out solid blue but the legend is first)
+plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=['solid','dashed','dashdot']) + cycler(color=[ '#1f77b4','#ff7f0e', '#2ca02c']))
+plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=["-",":","--","-.", (5, (10, 3)),(0, (3, 5, 1, 5, 1, 5))]) 
+                                   + cycler(color=[ '#000000','#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']))
+
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
 
@@ -275,10 +280,10 @@ def load_auten_splinter_data_and_calculate(as_filename):
 
 file_path = "C:\\Users\\decla\\Downloads\\"
 file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
-file_path = ''
+#file_path = ''
 pszname = "PSZ2022AppendixTablesII(Distrib).xlsx"
 cboname = "CBO2019-additional-data-for-researchers/58353-supplemental-data.xlsx"
-cboname = "58353-supplemental-data.xlsx"
+#cboname = "58353-supplemental-data.xlsx"
 asname = "AutenSplinter-IncomeIneq_2024.xlsx"
 psz_filename = file_path+pszname
 cbo_filename = file_path+cboname
@@ -304,27 +309,27 @@ rs_df = pd.concat([rs_as, ginis_psz, rs_cbo], axis=1, join="outer") # This is on
 rs_df = rs_df.sort_index()
 
 # Use this to scale the figures, which then scales all the fonts, etc
-figscale = 0.7
+figscale = .9
 plt.figure(figsize=(figscale*10,figscale*6))  # Changing the figsize seems to be the best way to change fonts, etc
 plt.plot(rs_df[['RSIndex_AS','RSIndex_cbo_mkt','psz_gini_diff']])
-plt.title('Figure 5: Auten & Splinter and CBO Reynolds−Smolensky Index\nAS 1960-2019, CBO 1979-2019, PSZ 1962-2019')
+plt.title('Figure 5: Auten & Splinter and CBO Reynolds−Smolensky Index\nAS 1960-2019, CBO 1979-2019, PSZ 1962-2019',fontsize=15)
 #plt.title('Auten & Splinter and CBO Reynolds−Smolensky Index')
 
 plt.legend(['Auten&Splinter','CBO','PSZ (Gini diff)'],loc='upper center', bbox_to_anchor=(0.5, -.1),
-          fancybox=True, shadow=True, ncol=3)#,fontsize=11)
+          fancybox=False, shadow=False, ncol=3)#,fontsize=11)
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
-plt.savefig('figures/figure5_output.pdf',bbox_inches='tight')  # The 'bbbox_inches='tight'' makes sure the legend is withing the .pdf
+#plt.savefig('figures/figure5_output.pdf',bbox_inches='tight')  # The 'bbbox_inches='tight'' makes sure the legend is withing the .pdf
 plt.show()
 
 plt.figure(figsize=(figscale*10,figscale*6))
 plt.plot(rs_df[['RSIndex_AS','as_gini_diff','psz_gini_diff']])
-plt.title('Comparison of A&S and PSZ for Gini Differences')
+plt.title('Comparison of A&S and PSZ for Gini Differences',fontsize=15)
 plt.legend(['A&S Reynolds-Smolensky','A&S (Gini diff)','PSZ (Gini diff)'],loc='upper center', bbox_to_anchor=(0.5, -0.1),
-          fancybox=True, shadow=True, ncol=3)#,fontsize=11)
+          fancybox=False, shadow=False, ncol=3)#,fontsize=11)
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
-plt.savefig('figures/figure5b_output.pdf',bbox_inches='tight')
+#plt.savefig('figures/figure5b_output.pdf',bbox_inches='tight')
 plt.show()
 
 
@@ -341,24 +346,24 @@ rs_df = rs_df.sort_index()
 figscale = 0.7
 plt.figure(figsize=(figscale*10,figscale*6))  # Changing the figsize seems to be the best way to change fonts, etc
 plt.plot(rs_df[['RSIndex_AS','RSIndex_cbo_mkt','psz_gini_diff']])
-plt.title('Figure A3: Auten & Splinter and CBO Reynolds−Smolensky Index\nAS 1960-2019, CBO 1979-2019, PSZ 1962-2019')
+plt.title('Figure A3: Auten & Splinter and CBO Reynolds−Smolensky Index\nAS 1960-2019, CBO 1979-2019, PSZ 1962-2019',fontsize=15)
 #plt.title('Auten & Splinter and CBO Reynolds−Smolensky Index')
 
 plt.legend(['Auten&Splinter','CBO','PSZ (Gini diff, factor income)'],loc='upper center', bbox_to_anchor=(0.5, -.1),
-          fancybox=True, shadow=True, ncol=3)#,fontsize=11)
+          fancybox=False, shadow=False, ncol=3)#,fontsize=11)
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
-plt.savefig('figures/figureA3_output.pdf',bbox_inches='tight')  # The 'bbbox_inches='tight'' makes sure the legend is withing the .pdf
+#plt.savefig('figures/figureA3_output.pdf',bbox_inches='tight')  # The 'bbbox_inches='tight'' makes sure the legend is withing the .pdf
 plt.show()
 
 plt.figure(figsize=(figscale*10,figscale*6))
 plt.plot(rs_df[['RSIndex_AS','as_gini_diff','psz_gini_diff']])
 plt.title('Figure A4:Alternate Comparison of A&S and PSZ for Gini Differences\nAS 1960-2019, PSZ 1962-2019')
 plt.legend(['A&S Reynolds-Smolensky','A&S (Gini diff)','PSZ (Gini diff, factor income)'],loc='upper center', bbox_to_anchor=(0.5, -0.1),
-          fancybox=True, shadow=True, ncol=3)#,fontsize=11)
+          fancybox=False, shadow=False, ncol=3)#,fontsize=11)
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
-plt.savefig('figures/figureA4_output.pdf',bbox_inches='tight')
+#plt.savefig('figures/figureA4_output.pdf',bbox_inches='tight')
 plt.show()
 
 

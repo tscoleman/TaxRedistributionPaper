@@ -55,9 +55,9 @@ def isNaN(num):
     return num != num
 
 
-def plot_AScombined_panels(file_path, sheet_name, ref_sheet, indexyr):
+def plot_AScombined_panels(file_path, sheet_name, ref_sheet, indexyr,figscale=1):
     # Set up the plot
-    fig, axs = plt.subplots(2, 2, figsize=(14, 11))
+    fig, axs = plt.subplots(2, 2, figsize=(14*figscale, 11*figscale))
      
     # Load the data
     # It would be better if python had a read_xls function like R, where one could specify rows to read
@@ -168,7 +168,7 @@ def plot_AScombined_panels(file_path, sheet_name, ref_sheet, indexyr):
         
 #    axs[0,0].legend(['Before Tax','After Tax'],frameon=False)                   # Legend in the upper left
     fig.legend(['Before Tax','After Tax'],loc='upper center', bbox_to_anchor=(0.5, 0.02),
-          fancybox=True, shadow=True, ncol=4)#,fontsize=11)
+          fancybox=False, shadow=False, ncol=4)#,fontsize=11)
     axs[0,1].axes.yaxis.set_ticklabels([])           # Turn off left axis for the right-hand graphs
     axs[0,1].spines[['left']].set_visible(False)
     axs[1,1].axes.yaxis.set_ticklabels([])
@@ -178,7 +178,7 @@ def plot_AScombined_panels(file_path, sheet_name, ref_sheet, indexyr):
 
 
 
-    fig.suptitle('Figure 6: Growth in real (2018) before- and after-tax-and-transfer income, 1960-2019',fontsize=20)
+    fig.suptitle('Figure 6: Growth in real (2018) before- and after-tax-and-transfer income, 1960-2019',fontsize=15)
     plt.tight_layout()
 #    plt.show()  This command must come after 'plt.savefit()'
 
@@ -254,12 +254,12 @@ def avgquantile_psz(xpsz_pctl, xprobs):
 
 
 
-def plot_PSZcombined_panels(file_path, sheet_name, indexyr,all4=False):
+def plot_PSZcombined_panels(file_path, sheet_name, indexyr,all4=False,figscale=1):
     # Set up the plot
     if all4:
-        fig, axs = plt.subplots(2, 2, figsize=(14, 11))
+        fig, axs = plt.subplots(2, 2, figsize=(14*figscale, 11*figscale))
     else:
-        fig, axs = plt.subplots(1, 2, figsize=(14, 5.5))
+        fig, axs = plt.subplots(1, 2, figsize=(14*figscale, 5.5*figscale))
 
 
     # Define quantiles and column names
@@ -317,7 +317,7 @@ def plot_PSZcombined_panels(file_path, sheet_name, indexyr,all4=False):
             axs[rowi,coli].grid(axis='y',alpha=0.)  # Only horizontal gridlines
             
         fig.legend(['Before Tax','After Tax'],loc='upper center', bbox_to_anchor=(0.5, 0.02),
-          fancybox=True, shadow=True, ncol=4)#,fontsize=11)        axs[0,1].axes.yaxis.set_ticklabels([])           # Turn off left axis for the right-hand graphs
+          fancybox=False, shadow=False, ncol=4)#,fontsize=11)        axs[0,1].axes.yaxis.set_ticklabels([])           # Turn off left axis for the right-hand graphs
         axs[0,1].spines[['left']].set_visible(False)
         axs[1,1].axes.yaxis.set_ticklabels([])
         axs[1,1].spines[['left']].set_visible(False)
@@ -335,18 +335,18 @@ def plot_PSZcombined_panels(file_path, sheet_name, indexyr,all4=False):
             axs[i].grid(axis='x',alpha=0.)  # Only horizontal gridlines
             
         fig.legend(['Before Tax','After Tax'],loc='upper center', bbox_to_anchor=(0.5, 0.02),
-          fancybox=True, shadow=True, ncol=4)#,fontsize=11)        axs[1].axes.yaxis.set_ticklabels([])           # Turn off left axis for the right-hand graphs
+          fancybox=False, shadow=False, ncol=4)#,fontsize=11)        axs[1].axes.yaxis.set_ticklabels([])           # Turn off left axis for the right-hand graphs
         axs[1].spines[['left']].set_visible(False)
         axs[0].set_ylabel('Growth (indexed to 1 in 1966)')
 
 
 
     if sheet_name == 'TB4':
-        fig.suptitle('Figure 7: Growth in real before and after-tax and transfer income, PSZ, 1962-2019',fontsize=20)
+        fig.suptitle('Figure 7: Growth in real before and after-tax and transfer income, PSZ, 1962-2019',fontsize=15)
     elif sheet_name == 'TA4':
-        fig.suptitle('Figure A5: Growth in real factor vs after-tax and transfer income, PSZ, 1962-2019',fontsize=20)
+        fig.suptitle('Figure A5: Growth in real factor vs after-tax and transfer income, PSZ, 1962-2019',fontsize=15)
     else:
-        fig.suptitle('Figure 7c: Unknown, PSZ, 1962-2019',fontsize=20)
+        fig.suptitle('Figure 7c: Unknown, PSZ, 1962-2019',fontsize=15)
     plt.tight_layout()
 #    plt.show()  This command must come after 'plt.savefit()'
 
@@ -356,7 +356,7 @@ def plot_PSZcombined_panels(file_path, sheet_name, indexyr,all4=False):
 
 file_path = "C:\\Users\\decla\\Downloads\\"
 file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
-file_path = ''
+#file_path = ''
 file_name = 'AutenSplinter-IncomeIneq_2024.xlsx'
 sheet_name = 'Output2'  
 sheet_name_output = 'Output'
@@ -365,27 +365,28 @@ PCE_col = 23  # Column index for PCE values
 pop_col = 16  # Column index for population values
 base_row_PCE = 1  # Base row for PCE values
 
-plot_AScombined_panels(file_path+file_name, sheet_name, ref_sheet, 1966)
-plt.savefig('figures/figure6_output.pdf',bbox_inches='tight')
+figscale = 0.8
+plot_AScombined_panels(file_path+file_name, sheet_name, ref_sheet, 1966,figscale=figscale)
+#plt.savefig('figures/figure6_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
 
 
 file_name = 'PSZ2022AppendixTablesII(Distrib).xlsx'
-plot_PSZcombined_panels(file_path+file_name, 'TB4', 1966)
-plt.savefig('figures/figure7_output.pdf',bbox_inches='tight')
+plot_PSZcombined_panels(file_path+file_name, 'TB4', 1966,figscale=figscale)
+#plt.savefig('figures/figure7_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
-plot_PSZcombined_panels(file_path+file_name, 'TB4', 1966,all4=True)
-plt.savefig('figures/figure7all4_output.pdf',bbox_inches='tight')
+plot_PSZcombined_panels(file_path+file_name, 'TB4', 1966,all4=True,figscale=figscale)
+#plt.savefig('figures/figure7all4_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
-plot_PSZcombined_panels(file_path+file_name, 'TA4', 1966)
-plt.savefig('figures/figureA5_output.pdf',bbox_inches='tight')
+plot_PSZcombined_panels(file_path+file_name, 'TA4', 1966,figscale=figscale)
+#plt.savefig('figures/figureA5_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
-plot_PSZcombined_panels(file_path+file_name, 'TA4', 1966,all4=True)
-plt.savefig('figures/figure7ball4_output.pdf',bbox_inches='tight')
+plot_PSZcombined_panels(file_path+file_name, 'TA4', 1966,all4=True,figscale=figscale)
+#plt.savefig('figures/figure7ball4_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
 

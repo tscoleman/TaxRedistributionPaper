@@ -16,8 +16,8 @@ file_path = "C:\\Users\\decla\\Downloads\\"
 cbofile_path = "C:\\Users\\decla\\Downloads\\"
 file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
 cbofile_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/CBO2019-additional-data-for-researchers/CBO_distribution_household_income_2019_data/'
-file_path = ''
-cbofile_path = ''
+#file_path = ''
+#cbofile_path = ''
 
 # Cycler and spines to get formatting for graphs consistent
 plt.rcParams['font.size'] = '12'
@@ -292,7 +292,7 @@ for i in range(len(xquintiles)):
 #%% Plot first figure (A&S vs PSZ)
 
 # First Figure: AS data and PSZ data (with AS income groups)
-fig1, axs1 = plt.subplots(1, 2, figsize=(12, 6))
+fig1, axs1 = plt.subplots(1, 2, figsize=(10, 5))
 fig1.suptitle('Figure 3: Tax & transfer rates, PSZ (1962-2019) v. AS (1966-2019)')
 # AS data (left subplot)
 for percname in aspercnames:
@@ -300,14 +300,15 @@ for percname in aspercnames:
         axs1[0].plot(as_redis['year'], as_redis['redisrate'+percname], label=percname)
 
 #axs1[0].set_xlabel('Year')
-axs1[0].set_ylabel('%')
+axs1[0].set_ylabel('Tax & Transfer (%)')
 axs1[0].set_title('Auten & Splinter')
 #axs1[0].legend()
 # Place legend in _figure_ which puts it below both subplots
 # Put it here (after the first subplot) so it uses only the labels from first subplot
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
 fig1.legend(loc='upper center', bbox_to_anchor=(0.5, 0.02),
-          fancybox=True, shadow=True, ncol=4,fontsize=11)
+          fancybox=False, shadow=False, ncol=4,fontsize=11)
+
 
 axs1[0].set_ylim(ymin, ymax)
 axs1[0].set_xlim(1960, 2020)
@@ -346,7 +347,7 @@ axs1[1].spines[['left']].set_visible(False)
 plt.tight_layout()
 # totally silly, but need 'bbox_inches='tight'' to force legend to be put into figure
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
-plt.savefig('figures/figure3_output.pdf',bbox_inches="tight") 
+#plt.savefig('figures/figure3_output.pdf',bbox_inches="tight") 
 plt.show()
 plt.close()
 
@@ -435,7 +436,7 @@ else:
 # -----------------------------------------
 # Plotting AS Quintiles vs. CBO Quintiles (Second Plot)
 # -----------------------------------------
-fig2, axs2 = plt.subplots(1, 2, figsize=(12, 6))
+fig2, axs2 = plt.subplots(1, 2, figsize=(10,5))
 
 fig2.suptitle('Figure 4: Tax & transfer rates: AS (1966-2019) v. CBO (1979-2019)')
 
@@ -446,14 +447,14 @@ for i, quintile_name in enumerate(xquintile_names):
         axs2[0].plot(as_quintiles_redis['year'], as_quintiles_redis[rate_col] / 1e6, label=quintile_name)
 
 #axs2[0].set_xlabel('Year')
-axs2[0].set_ylabel('%')
+axs2[0].set_ylabel('Tax & Transfer (%)')
 axs2[0].set_title('Auten & Splinter')
 #axs2[0].legend(frameon=False)
 # Place legend in _figure_ which puts it below both subplots
 # Put it here (after the first subplot) so it uses only the labels from first subplot
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
 fig2.legend(loc='upper center', bbox_to_anchor=(0.5, 0.02),
-          fancybox=True, shadow=True, ncol=5,fontsize=11)
+          fancybox=False, shadow=False, ncol=5,fontsize=11)
 axs2[0].set_ylim(-175, 50)
 axs2[0].set_xlim(1960, 2020)
 axs2[0].grid(axis='y', alpha=0.25)
@@ -481,6 +482,6 @@ axs2[1].spines[['left']].set_visible(False)
 plt.tight_layout()
 # totally silly, but need 'bbox_inches='tight'' to force legend to be put into figure
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
-plt.savefig('figures/figure4_output.pdf',bbox_inches='tight')
+#plt.savefig('figures/figure4_output.pdf',bbox_inches='tight')
 plt.show()
 plt.close()

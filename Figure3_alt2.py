@@ -12,13 +12,7 @@ import matplotlib.pyplot as plt
 from cycler import cycler
 
 
-# Change the following file_paths by commenting out the ones that are not required
-# but please leave them in so they don't need to be re-entered
-
-file_path = "C:\\Users\\decla\\Downloads\\"
-cbofile_path = "C:\\Users\\decla\\Downloads\\"
-file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
-cbofile_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/CBO2019-additional-data-for-researchers/CBO_distribution_household_income_2019_data/'
+# This should run under the directory with both code and data (.xlsx files)
 file_path = ''
 cbofile_path = ''
 
@@ -36,7 +30,6 @@ plt.rcParams['axes.spines.top'] = False
 # roughly black, blue, orange, green, red, purple
 plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=["-",":","--","-.", (5, (10, 3)),(0, (3, 5, 1, 5, 1, 5))]) 
                                    + cycler(color=[ '#000000','#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']))
-#plt.rcParams['lines.linestyle'] = 'dashed'
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
 
@@ -115,10 +108,8 @@ fig1.suptitle('Figure A2: Before less After-Tax Income, Not Consistent Rankings\
 for percname in aspercnames:
     axs1[0].plot(as_merged['year'], as_merged[percname], label=percname)
 
-#axs1[0].set_xlabel('Year')
 axs1[0].set_ylabel('%')
 axs1[0].set_title('Auten & Splinter')
-#axs1[0].legend()
 # Place legend in _figure_ which puts it below both subplots
 # Put it here (after the first subplot) so it uses only the labels from first subplot
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
@@ -145,10 +136,8 @@ if 'Top10taxtr' in psz_transfers.columns:
 if 'Top1taxtr' in psz_transfers.columns:
     axs1[1].plot(psz_transfers['year'], 100 * psz_transfers['Top1taxtr'], label='Top 1%', color='green')
 '''
-#axs1[1].set_xlabel('Year')
 axs1[1].set_ylabel('')
 axs1[1].set_title('Piketty, Saez, Zucman')
-#axs1[1].legend()
 axs1[1].set_ylim(ymin,ymax)
 axs1[1].set_xlim(1960, 2020)
 axs1[1].grid(axis='y', alpha=0.25)
@@ -176,10 +165,8 @@ fig2.suptitle('Figure A1: Before less After-Tax Income, Not Consistent Rankings\
 for percname in aspercnames:
     axs2[0].plot(as_merged['year'], as_merged[percname], label=percname)
 
-#axs2[0].set_xlabel('Year')
 axs2[0].set_ylabel('%')
 axs2[0].set_title('Auten & Splinter')
-#axs2[0].legend()
 # Place legend in _figure_ which puts it below both subplots
 # Put it here (after the first subplot) so it uses only the labels from first subplot
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
@@ -196,20 +183,9 @@ axs2[0].grid(axis='x', alpha=0)
 for percname in pszpercnames:
     if percname in psz_merged_bt.columns:
         axs2[1].plot(psz_merged_bt['year'], psz_merged_bt[percname], label=percname)
-'''
-if 'Bottom50taxtr' in psz_transfers.columns:
-    axs2[1].plot(psz_transfers['year'], 100 * psz_transfers['Bottom50taxtr'], label='Bottom 50%', color='blue')
-if 'Middle40taxtr' in psz_transfers.columns:
-    axs2[1].plot(psz_transfers['year'], 100 * psz_transfers['Middle40taxtr'], label='Middle 40%', color='red')
-if 'Top10taxtr' in psz_transfers.columns:
-    axs2[1].plot(psz_transfers['year'], 100 * psz_transfers['Top10taxtr'], label='Top 10%', color='black')
-if 'Top1taxtr' in psz_transfers.columns:
-    axs2[1].plot(psz_transfers['year'], 100 * psz_transfers['Top1taxtr'], label='Top 1%', color='green')
-'''
-#axs2[1].set_xlabel('Year')
+
 axs2[1].set_ylabel('')
 axs2[1].set_title('Piketty, Saez, Zucman')
-#axs2[1].legend()
 axs2[1].set_ylim(ymin,ymax)
 axs2[1].set_xlim(1960, 2020)
 axs2[1].grid(axis='y', alpha=0.25)

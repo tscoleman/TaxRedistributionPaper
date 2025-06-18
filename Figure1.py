@@ -13,6 +13,7 @@ Overview
 - Data from PSZ spreadsheet
 - Need to set file_path to the appropriate file path
 
+This assumes that current directory is set to the directory with code and data (eg PSZ2022AppendixTablesII(Distrib).xlsx)
 
 Requirements
 -------------
@@ -30,23 +31,19 @@ from cycler import cycler
 
 sns.set(style="whitegrid")
 
-#file_path = "C:\\Users\\decla\\Downloads\\PSZ2022AppendixTablesII(Distrib).xlsx"
-file_path = "/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/PSZ2022AppendixTablesII(Distrib).xlsx"
-#file_path = "PSZ2022AppendixTablesII(Distrib).xlsx"
+file_path = "PSZ2022AppendixTablesII(Distrib).xlsx"
 
 #%% Read in data and process
 
 # The 'categories' list must match the sheet from the PSZ workbook
 # Put them in this order so that 
-cat_names =['All','bottom 50%','Top 10%'] # ['Top 10%','Middle 40%','bottom 50%']# ['bottom 50%','Middle 40%','Top 10%']
+cat_names =['All','bottom 50%','Top 10%'] 
 label_names = ["All",'Bottom 50%','Top 10%'] # This is really silly, but PSZ have lc 'bottom' in their spreadsheet so rename
-sheet_names = ['TD5','TD7','TD9'] # ['TD9','TD8','TD7']# ['TD7','TD8','TD9'] 
+sheet_names = ['TD5','TD7','TD9'] 
 sheets = []
 for catname,sheetname in zip(cat_names,sheet_names):
     x1 = pd.read_excel(file_path, sheet_name=sheetname,header=7,index_col=0)
     sheets.append(x1)
-#TD8 = pd.read_excel(file_path, sheet_name="TD8",header=7,index_col=0)
-#TD9 = pd.read_excel(file_path, sheet_name="TD9",header=7,index_col=0)
 TB3 = pd.read_excel(file_path, sheet_name="TB3",header=7,index_col=0)
 TD5 = pd.read_excel(file_path, sheet_name="TD5",header=7,index_col=0)
 
@@ -63,16 +60,9 @@ income_df.index.name = "Year"
 
 income_df = income_df.merge(TB3,left_index=True,right_index=True,suffixes=('','_TB3'))
 
-for i, catname in enumerate(cat_names):
+for i, catname in enumerate(cat_names):   # Calculate shares
     income_df[cat_names[i]+'_share'] = 100 * income_df[catname] / income_df[catname+'_TB3']
 
-'''
-shares_df = pd.DataFrame(TD9.loc[:,'equal-split individuals']/TB3.loc[:,'Top 10%'])
-shares_df.columns = ['Top 10%']
-shares_df['Middle 40%'] = TD8.loc[:,'equal-split individuals']/TB3.loc[:,'Middle 40%']
-shares_df['Bottom 50%'] = TD7.loc[:,'equal-split individuals']/TB3.loc[:,'bottom 50%']
-shares_df.index.name = "Year"
-'''
 
 shares_df = income_df[[x+'_share' for x in cat_names]]   # make new df with only shares
 shares_df.columns = label_names
@@ -100,7 +90,6 @@ print(growth_df)
  
 plt.figure(figsize=(9,5.4),frameon=False,clear=True)
 
-#sns.lineplot(data=data_melted, x="Year", y="Percentage", hue="Type", linewidth=0.8)
 plt.rcParams['font.size'] = '12'
 plt.rcParams['axes.spines.right'] = False
 plt.rcParams['axes.spines.top'] = False
@@ -114,36 +103,23 @@ plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=["-",":","--","-.", (5, (10,
 # The colors here are black plus the first six from standard matplotlib color (see https://www.statology.org/matplotlib-default-colors/)
 # or https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html#colors-in-default-property-cycle
 # roughly black, blue, orange, green, red, purple
-#plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=["-",":","--","-.", (5, (10, 3)),(0, (3, 5, 1, 5, 1, 5))]) 
-#                                   + cycler(color=[ '#000000','#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']))
-#plt.rcParams['lines.linestyle'] = 'dashed'
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
 
-#plt.figure(figsize=(10, 6),frameon=False,clear=True)
 
 plt.plot(shares_df)
-#plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f'{x:.0}'))
-#plt.locator_params(axis='y', nbins=8)
 
 plt.title("Figure 1: Fiscal Income as a Fraction of Pre-Tax Hybrid Income\nPSZ data, 1960-2019",fontsize=14)
 plt.ylabel("Share (%)")
-#plt.xlabel("Years")
-#plt.legend(shares_df.columns.to_list(),frameon=False)#, loc='lower center')#,ncol=3)
 plt.legend(shares_df.columns.to_list(),loc='upper center', bbox_to_anchor=(0.5, -0.1),
           fancybox=False, shadow=False, ncol=3,fontsize=11)
 
 plt.tight_layout()
 
-#plt.savefig('figures/figure1_output.pdf')
+plt.savefig('figures/figure1_output.pdf')
 plt.show()
 plt.close()
 
-#print(os.getcwd())
-
-## %%
-
-#shares_df.plot()
 
 
 # %%

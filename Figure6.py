@@ -43,9 +43,6 @@ plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=['solid','dashed']) + cycler
 # The colors here are black plus the first six from standard matplotlib color (see https://www.statology.org/matplotlib-default-colors/)
 # or https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html#colors-in-default-property-cycle
 # roughly black, blue, orange, green, red, purple
-#plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=["-",":","--","-.", (5, (10, 3)),(0, (3, 5, 1, 5, 1, 5))]) 
-#                                   + cycler(color=[ '#000000','#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']))
-#plt.rcParams['lines.linestyle'] = 'dashed'
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
 
@@ -354,9 +351,7 @@ def plot_PSZcombined_panels(file_path, sheet_name, indexyr,all4=False,figscale=1
 #%% Run plots
 
 
-file_path = "C:\\Users\\decla\\Downloads\\"
-file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
-#file_path = ''
+file_path = ''
 file_name = 'AutenSplinter-IncomeIneq_2024.xlsx'
 sheet_name = 'Output2'  
 sheet_name_output = 'Output'
@@ -367,26 +362,26 @@ base_row_PCE = 1  # Base row for PCE values
 
 figscale = 0.8
 plot_AScombined_panels(file_path+file_name, sheet_name, ref_sheet, 1966,figscale=figscale)
-#plt.savefig('figures/figure6_output.pdf',bbox_inches='tight')
+plt.savefig('figures/figure6_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
 
 
 file_name = 'PSZ2022AppendixTablesII(Distrib).xlsx'
 plot_PSZcombined_panels(file_path+file_name, 'TB4', 1966,figscale=figscale)
-#plt.savefig('figures/figure7_output.pdf',bbox_inches='tight')
+plt.savefig('figures/figure7_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
 plot_PSZcombined_panels(file_path+file_name, 'TB4', 1966,all4=True,figscale=figscale)
-#plt.savefig('figures/figure7all4_output.pdf',bbox_inches='tight')
+plt.savefig('figures/figure7all4_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
 plot_PSZcombined_panels(file_path+file_name, 'TA4', 1966,figscale=figscale)
-#plt.savefig('figures/figureA5_output.pdf',bbox_inches='tight')
+plt.savefig('figures/figureA5_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
 plot_PSZcombined_panels(file_path+file_name, 'TA4', 1966,all4=True,figscale=figscale)
-#plt.savefig('figures/figure7ball4_output.pdf',bbox_inches='tight')
+plt.savefig('figures/figure7ball4_output.pdf',bbox_inches='tight')
 plt.show()    # Must be after 'plt.savefig()'
 plt.close()
 

@@ -13,11 +13,8 @@ from cycler import cycler
 
 
 
-#sns.lineplot(data=data_melted, x="Year", y="Percentage", hue="Type", linewidth=0.8)
 # To get these to work, may need to restart kernel
 plt.rcParams['font.size'] = '12'
-#plt.rcParams.update({'font.size': 15})
-#plt.rcParams['font.size'] = 15  # Note that none of these work to change fontsize, contrary to what Gemini and StackOverflow recommend
 # Changing the figsize seems to be the best way to change fonts, etc
 plt.rcParams['axes.spines.right'] = False
 plt.rcParams['axes.spines.top'] = False
@@ -29,9 +26,6 @@ plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=['solid','dashdot','dashed']
 # The colors here are black plus the first six from standard matplotlib color (see https://www.statology.org/matplotlib-default-colors/)
 # or https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html#colors-in-default-property-cycle
 # roughly black, blue, orange, green, red, purple
-#plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=["-",":","--","-.", (5, (10, 3)),(0, (3, 5, 1, 5, 1, 5))]) 
-#                                   + cycler(color=[ '#000000','#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']))
-#plt.rcParams['lines.linestyle'] = 'dashed'
 # These colors are orange, green, blue (put in this order so that "bottom 50%" comes out solid blue but the legend is first)
 plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=['solid','dashed','dashdot']) + cycler(color=[ '#1f77b4','#ff7f0e', '#2ca02c']))
 plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=["-",":","--","-.", (5, (10, 3)),(0, (3, 5, 1, 5, 1, 5))]) 
@@ -164,8 +158,6 @@ def load_cbo_data_and_calculate(cbo_filename):
 
 # Read in ranked by pre-tax income
 
-#cbo_share_mktinc <- read.xlsx(xlsxFile="/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/CBO2019-additional-data-for-researchers/58353-supplemental-data.xlsx",sheet="10. Household Income Shares",rows=rows_mktinc)
-
 
     xdata = pd.read_excel(cbo_filename, sheet_name = '10. Household Income Shares')
     cbo_names = ['mkt','beftax','afttax']
@@ -280,10 +272,9 @@ def load_auten_splinter_data_and_calculate(as_filename):
 
 file_path = "C:\\Users\\decla\\Downloads\\"
 file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
-#file_path = ''
+file_path = ''
 pszname = "PSZ2022AppendixTablesII(Distrib).xlsx"
-cboname = "CBO2019-additional-data-for-researchers/58353-supplemental-data.xlsx"
-#cboname = "58353-supplemental-data.xlsx"
+cboname = "58353-supplemental-data.xlsx"
 asname = "AutenSplinter-IncomeIneq_2024.xlsx"
 psz_filename = file_path+pszname
 cbo_filename = file_path+cboname
@@ -319,7 +310,7 @@ plt.legend(['Auten&Splinter','CBO','PSZ (Gini diff)'],loc='upper center', bbox_t
           fancybox=False, shadow=False, ncol=3)#,fontsize=11)
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
-#plt.savefig('figures/figure5_output.pdf',bbox_inches='tight')  # The 'bbbox_inches='tight'' makes sure the legend is withing the .pdf
+plt.savefig('figures/figure5_output.pdf',bbox_inches='tight')  # The 'bbbox_inches='tight'' makes sure the legend is withing the .pdf
 plt.show()
 
 plt.figure(figsize=(figscale*10,figscale*6))
@@ -329,7 +320,7 @@ plt.legend(['A&S Reynolds-Smolensky','A&S (Gini diff)','PSZ (Gini diff)'],loc='u
           fancybox=False, shadow=False, ncol=3)#,fontsize=11)
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
-#plt.savefig('figures/figure5b_output.pdf',bbox_inches='tight')
+plt.savefig('figures/figure5b_output.pdf',bbox_inches='tight')
 plt.show()
 
 
@@ -353,7 +344,7 @@ plt.legend(['Auten&Splinter','CBO','PSZ (Gini diff, factor income)'],loc='upper 
           fancybox=False, shadow=False, ncol=3)#,fontsize=11)
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
-#plt.savefig('figures/figureA3_output.pdf',bbox_inches='tight')  # The 'bbbox_inches='tight'' makes sure the legend is withing the .pdf
+plt.savefig('figures/figureA3_output.pdf',bbox_inches='tight')  # The 'bbbox_inches='tight'' makes sure the legend is withing the .pdf
 plt.show()
 
 plt.figure(figsize=(figscale*10,figscale*6))
@@ -363,7 +354,7 @@ plt.legend(['A&S Reynolds-Smolensky','A&S (Gini diff)','PSZ (Gini diff, factor i
           fancybox=False, shadow=False, ncol=3)#,fontsize=11)
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
-#plt.savefig('figures/figureA4_output.pdf',bbox_inches='tight')
+plt.savefig('figures/figureA4_output.pdf',bbox_inches='tight')
 plt.show()
 
 

@@ -10,14 +10,9 @@ import matplotlib.pyplot as plt
 from cycler import cycler
 
 
-# Change the following file_paths by commenting out the ones that are not required
-# but please leave them in so they don't need to be re-entered
-file_path = "C:\\Users\\decla\\Downloads\\"
-cbofile_path = "C:\\Users\\decla\\Downloads\\"
-file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
-cbofile_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/CBO2019-additional-data-for-researchers/CBO_distribution_household_income_2019_data/'
-#file_path = ''
-#cbofile_path = ''
+# This should run under the directory with both code and data (.xlsx files)
+file_path = ''
+cbofile_path = ''
 
 # Cycler and spines to get formatting for graphs consistent
 plt.rcParams['font.size'] = '12'
@@ -33,7 +28,6 @@ plt.rcParams['axes.spines.top'] = False
 # roughly black, blue, orange, green, red, purple
 plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=["-",":","--","-.", (5, (10, 3)),(0, (3, 5, 1, 5, 1, 5))]) 
                                    + cycler(color=[ '#000000','#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']))
-#plt.rcParams['lines.linestyle'] = 'dashed'
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
 
@@ -153,9 +147,6 @@ psz_transfers = pd.read_excel(file_path + "PSZ2022AppendixTablesII(Distrib).xlsx
 psz_taxrates = pd.read_excel(file_path + "PSZ2022AppendixTablesII(Distrib).xlsx", sheet_name="taxrates")   # This gets it from the back sheet but column labels not as good
 psz_taxrates = pd.read_excel(file_path + "PSZ2022AppendixTablesII(Distrib).xlsx", sheet_name="TG1",skiprows=8)
 
-#psz_transfers.columns = psz_transfers.columns.str.strip().str.replace(' ', '').str.replace('.', '', regex=False)
-#psz_avgpeinc.columns = psz_avgpeinc.columns.str.strip().str.replace(' ', '').str.replace('.', '', regex=False)
-#psz_taxrates.columns = psz_taxrates.columns.str.strip().str.replace(' ', '').str.replace('.', '', regex=False)
 
 # Need this to test for NaN (numpy or math will not work because includes strings)
 def isNaN(num):
@@ -299,10 +290,8 @@ for percname in aspercnames:
     if 'redisrate'+percname in as_redis.columns:
         axs1[0].plot(as_redis['year'], as_redis['redisrate'+percname], label=percname)
 
-#axs1[0].set_xlabel('Year')
 axs1[0].set_ylabel('Tax & Transfer (%)')
 axs1[0].set_title('Auten & Splinter')
-#axs1[0].legend()
 # Place legend in _figure_ which puts it below both subplots
 # Put it here (after the first subplot) so it uses only the labels from first subplot
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
@@ -320,20 +309,8 @@ axs1[0].grid(axis='x', alpha=0)
 for percname in pszpercnames:
     if percname in psz_merged.columns:
         axs1[1].plot(psz_merged['year'], psz_merged[percname], label=percname)
-'''
-if 'Bottom50taxtr' in psz_transfers.columns:
-    axs1[1].plot(psz_transfers['year'], 100 * psz_transfers['Bottom50taxtr'], label='Bottom 50%', color='blue')
-if 'Middle40taxtr' in psz_transfers.columns:
-    axs1[1].plot(psz_transfers['year'], 100 * psz_transfers['Middle40taxtr'], label='Middle 40%', color='red')
-if 'Top10taxtr' in psz_transfers.columns:
-    axs1[1].plot(psz_transfers['year'], 100 * psz_transfers['Top10taxtr'], label='Top 10%', color='black')
-if 'Top1taxtr' in psz_transfers.columns:
-    axs1[1].plot(psz_transfers['year'], 100 * psz_transfers['Top1taxtr'], label='Top 1%', color='green')
-'''
-#axs1[1].set_xlabel('Year')
 axs1[1].set_ylabel('')
 axs1[1].set_title('Piketty, Saez, Zucman')
-#axs1[1].legend()
 axs1[1].set_ylim(ymin,ymax)
 axs1[1].set_xlim(1960, 2020)
 axs1[1].grid(axis='y', alpha=0.25)
@@ -347,7 +324,7 @@ axs1[1].spines[['left']].set_visible(False)
 plt.tight_layout()
 # totally silly, but need 'bbox_inches='tight'' to force legend to be put into figure
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
-#plt.savefig('figures/figure3_output.pdf',bbox_inches="tight") 
+plt.savefig('figures/figure3_output.pdf',bbox_inches="tight") 
 plt.show()
 plt.close()
 
@@ -406,8 +383,6 @@ for i in range(len(xquintiles)):
     else:
         print(f"Data columns for quintile '{quintile_name}' are incomplete.")
 
-#%% Load and process CBO data for second plot
-
 #%% Load CBO data
 # -----------------------------------------
 # Load and process CBO data for Second Plot
@@ -446,10 +421,8 @@ for i, quintile_name in enumerate(xquintile_names):
     if rate_col in as_quintiles_redis.columns:
         axs2[0].plot(as_quintiles_redis['year'], as_quintiles_redis[rate_col] / 1e6, label=quintile_name)
 
-#axs2[0].set_xlabel('Year')
 axs2[0].set_ylabel('Tax & Transfer (%)')
 axs2[0].set_title('Auten & Splinter')
-#axs2[0].legend(frameon=False)
 # Place legend in _figure_ which puts it below both subplots
 # Put it here (after the first subplot) so it uses only the labels from first subplot
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
@@ -466,10 +439,8 @@ for group, color in zip(quintile_columns_cbo, ['blue', 'red', 'black', 'green', 
     if group in cbo_redistribution.columns:
         axs2[1].plot(cbo_redistribution.index, cbo_redistribution[group], label=f'CBO {group.replace("_", " ").title()}')#, color=color)
 
-#axs2[1].set_xlabel('Year')
 axs2[1].set_ylabel('')
 axs2[1].set_title('Congressional Budget Office')
-#axs2[1].legend(frameon=False)#,loc='lower center',ncol=5)
 axs2[1].set_ylim(-175, 50)
 axs2[1].set_xlim(1960, 2020)
 axs2[1].grid(axis='y', alpha=0.25)
@@ -482,6 +453,6 @@ axs2[1].spines[['left']].set_visible(False)
 plt.tight_layout()
 # totally silly, but need 'bbox_inches='tight'' to force legend to be put into figure
 # See https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
-#plt.savefig('figures/figure4_output.pdf',bbox_inches='tight')
+plt.savefig('figures/figure4_output.pdf',bbox_inches='tight')
 plt.show()
 plt.close()

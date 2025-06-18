@@ -18,7 +18,6 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
 
-dir_name = "/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/"
 dir_name = ''
 file_pathPSZ = dir_name + "PSZ2022AppendixTablesII(Distrib).xlsx"
 file_pathAS = dir_name + "AutenSplinter-IncomeIneq_2024.xlsx"
@@ -125,17 +124,13 @@ for i,quantile in enumerate(quantiles):    # Convert incomes to per-capita, real
 dfdict[names[3]] = as_merged
 
 
-#%% Populate final table dataframe
+#%% Populate final table dataframe, print to console and as figure
 
 for i,quantile in enumerate(quantiles):
     for j,name in enumerate(names):
         x1 = dfdict[name]
         table1.loc[name,quantile] = 100*(x1.loc[years[1],quantile] - x1.loc[years[0],quantile]) / x1.loc[years[0],quantile]
   
-    
-#%% Old  
-
-
 print(table1)
 
 fig, ax = plt.subplots(figsize=(8, 2))  

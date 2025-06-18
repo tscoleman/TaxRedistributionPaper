@@ -28,7 +28,6 @@ plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=['solid','dashed']) + cycler
 # roughly black, blue, orange, green, red, purple
 plt.rcParams['axes.prop_cycle'] = (cycler(linestyle=["-",":","--","-.", (5, (10, 3)),(0, (3, 5, 1, 5, 1, 5))]) 
                                    + cycler(color=[ '#000000','#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']))
-#plt.rcParams['lines.linestyle'] = 'dashed'
 plt.grid(axis='x',alpha=.0)
 plt.grid(axis='y',alpha=.25)
 
@@ -98,11 +97,8 @@ _TYPE_,_FREQ_,year,filingtype,incometype,ranktype,itot,i1,i2,i3,i4,i5,i6,i7,i8,q
 warnings.filterwarnings("ignore")
 
 # Read the uploaded Excel files
-file_path = "C:\\Users\\decla\\Downloads\\"
 file_name = 'AutenSplinter-IncomeIneq_2024.xlsx'
-file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
-file_name = 'AutenSplinter-IncomeIneq_2024.xlsx'
-#file_path = ''
+file_path = ''
 
 as_file_path = file_path+file_name
 
@@ -197,19 +193,13 @@ fig, axs = plt.subplots(1, 2, figsize=(14*figscale, 6*figscale))
 for label, pctla in zip(pctl_names,afttax_pctl):
     axs[0].plot(data_pretax['year'],data_pretax[pctla+'_ratio'], label=label, linewidth=1.)
 axs[0].set_title("Transfers as Share of National Income",fontsize=16)
-#axs[0].set_xlabel("Year")
 axs[0].set_ylabel("Percentage")
 axs[0].set_ylim(0,0.06)
-#axs[0].legend(title="Income Group", loc='lower center', ncol=2)
-#axs[0].grid(True)
-#axs[0].set_box_aspect(aspect=0.6)
 axs[0].grid(axis='y',alpha=0.25)  # Only horizontal gridlines
 axs[0].grid(axis='x',alpha=0.)  # Only horizontal gridlines
 axs[0].yaxis.set_major_formatter(FuncFormatter(lambda y, _: f'{y:.0%}'))
 # Shrink current axis's height by 10% on the bottom
 box = axs[0].get_position()
-#axs[0].set_position([box.x0, box.y0 + box.height * 0.2,
-#                 box.width, box.height * 0.8])
 
 # Put a legend below current axis
 axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.1),
@@ -219,47 +209,26 @@ axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.1),
 axs[1].plot(data_pretax['year'],data_pretax['q1_ratio'], label='Transfers', linewidth=1.)
 axs[1].plot(data_pretax['year'],data_pretax['q1_share'], label='Income Share', linewidth=1.)
 axs[1].set_title("Bottom Quintile Transfers vs. Pre-Tax Income Share",fontsize=16)
-#axs[1].set_xlabel("Year")
-#axs[1].set_ylabel("Percentage")
 axs[1].set_ylim(0,0.06)
-#axs[1].legend(title="Income Group", loc='lower center', ncol=2)
-#axs[1].set_box_aspect(aspect=0.6)
 axs[1].grid(axis='y',alpha=0.25)  # Only horizontal gridlines
 axs[1].grid(axis='x',alpha=0.)  # Only horizontal gridlines
 axs[1].axes.yaxis.set_ticklabels([])
 axs[1].spines[['left']].set_visible(False)
-#axs[1].yaxis.set_major_formatter(FuncFormatter(lambda y, _: f'{y:.0%}'))
 # Shrink current axis's height by 10% on the bottom
 box = axs[1].get_position()
-#axs[1].set_position([box.x0, box.y0 + box.height * 0.1,
-#                 box.width, box.height * 0.5])
 
 # Put a legend below current axis
 axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.1),
           fancybox=False, shadow=False, ncol=2,fontsize=11)
 
-'''
-# Shrink current axis's height by 10% on the bottom
-box = ax.get_position()
-ax.set_position([box.x0, box.y0 + box.height * 0.1,
-                 box.width, box.height * 0.9])
-
-# Put a legend below current axis
-ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05),
-          fancybox=True, shadow=True, ncol=5)
-'''
 
 # Set the overall title for the figure
 fig.suptitle("Figure 8: Share of transfers for each quintile and for bottom quintile, 1960-2019",fontsize=16)#, fontsize=14)
-#fig.suptitle("Share of transfers for each quintile and for bottom quintile")#, fontsize=14)
 
 # Adjust layout to avoid overlap
 plt.tight_layout(rect=[0, 0, 1.2, 1.1])
 plt.tight_layout()
 
-file_path = "C:\\Users\\decla\\Downloads\\"
-file_path = '/Users/tcoleman/tom/Economics/Harris/research/IncomeInequality/AS_PSZdata/'
-#file_path = ''
 
 # Save the figure as a PDF
 plt.savefig('figures/figure8_Transfers_and_Income_Shares.pdf')

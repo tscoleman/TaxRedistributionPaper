@@ -1,5 +1,5 @@
 # TaxRedistributionPaper
-Code repository for Coleman-Weisbach paper "How Much Does U.S. Fiscal System Redistribute?"
+Code and data repository for Coleman-Weisbach paper "How Much Does U.S. Fiscal System Redistribute?"
 
 ## Data
 
